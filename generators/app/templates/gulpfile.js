@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     ngCache = require('gulp-angular-templatecache'),
+    inject = require('gulp-inject'),
     sass = require('gulp-sass'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -16,6 +17,13 @@ gulp.task('default', ['dist'], function() {
 
 gulp.task('deploy', function() {
   console.log("deploying");
+});
+
+gulp.task('index', function () {
+  var target = gulp.src('./src/index.html');
+  var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false});
+  return target.pipe(inject(sources))
+    .pipe(gulp.dest('./src'));
 });
 
 gulp.task('dist', ['html-templates'], function(done) {

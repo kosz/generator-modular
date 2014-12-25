@@ -2,9 +2,16 @@
   "name": "generator-angular-webapp",
   "version": "0.1.1",
   "author": "Cosmin Ronnin <coszmin@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kosz/generator-angular-webapp"
+  },
   "description": "Generator for Angular Front End apps using gulp and following the google recommendations for project file structure",
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "dependencies": {
-    "yeoman-generator": "^0.17.3"
+    "yeoman-generator": "^0.17.3",
+    "chalk": "^0.5.1"
   }
 }

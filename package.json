@@ -1,0 +1,9 @@
+{
+  "name": "generator-angular-webapp",
+  "version": "0.1.0",
+  "description": "Generator for Angular Front End apps using gulp and following the google recommendations for project file structure",
+  "keywords": ["yeoman-generator"],
+  "dependencies": {
+    "yeoman-generator": "^0.17.3"
+  }
+}

@@ -8,5 +8,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "angular": "~<%= angularVersion %>",
+    "angular-mocks": "~<%= angularVersion %>"
+  }
 }

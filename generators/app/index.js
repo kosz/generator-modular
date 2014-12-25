@@ -48,6 +48,21 @@ module.exports = generators.Base.extend({
     }.bind(this));
   },
 
+	promptAngularVersion: function () {
+    var done = this.async();
+    this.prompt({
+      type: 'input',
+      name: 'angularVersion',
+      message: 'Which angular version would you like to use ? (eg: 1.2.28)',
+			store: true,
+      default: '1.3.8',
+    }, function (answers) {
+      this.log(answers.angularVersion);
+			this.angularVersion = answers.angularVersion;
+      done();
+    }.bind(this));
+  },
+
 	processTemplates: function () {
 
 		this.template('gulpfile.js', 'gulpfile.js');

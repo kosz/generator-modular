@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-webapp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Cosmin Ronnin <coszmin@gmail.com>",
   "description": "Generator for Angular Front End apps using gulp and following the google recommendations for project file structure",
   "keywords": ["yeoman-generator"],

@@ -1,5 +1,6 @@
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
+var yosay = require('yosay');
 
 module.exports = generators.Base.extend({
   constructor: function () {
@@ -11,6 +12,11 @@ module.exports = generators.Base.extend({
 
   promptProjectType: function () {
     var done = this.async();
+
+    this.log(yosay(
+      'Welcome to the ' + chalk.red('angular-webapp') + ' generator!'
+    ));
+
     this.prompt({
       type: 'list',
       name: 'projectType',
@@ -66,21 +72,31 @@ module.exports = generators.Base.extend({
 
   processTemplates: function () {
 
+    //
+    // project setup
+    //
     this.template('gulpfile.js', 'gulpfile.js');
     this.template('.gitignore', '.gitignore');
     this.template('bower.json', 'bower.json');
+    this.template('.bowerrc', '.bowerrc');
+    this.template('.jshintrc', '.jshintrc');
     this.template('package.json', 'package.json');
-
+    this.template('editorconfig', '.editorconfig');
+  
+    //
+    // angular app setup 
+    //
     this.template('src/index.html', 'src/index.html');
-
+   
     this.template('src/app/app.js', 'src/app/app.js');
 
   },
   install: function () {
+    var name = this.name;
     this.installDependencies({
       callback: function () {
         this.spawnCommand('gulp', ['index']).on('close', function (code) {
-          console.log(chalk.green('Finished setting up ' + this.name + ' run gulp to get started'));
+          console.log(chalk.bold.green('Finished setting up ' + name + ' run gulp to get started\n'));
           console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-angular-webapp') + '\n' );
 
           console.log(chalk.bold.yellow('testing :'));
@@ -90,13 +106,13 @@ module.exports = generators.Base.extend({
 
           console.log(chalk.bold.yellow('gulp :'));
           console.log(chalk.yellow(' gulp') + chalk.green(' - default task, watches and runs : ' + 
-              chalk.yellow('serve') + ',' + 
-              chalk.yellow('dist') + ',' +
+              chalk.yellow('serve') + ', ' + 
+              chalk.yellow('dist') + ', ' +
               chalk.yellow('deploy')
           ));
           console.log(chalk.yellow(' gulp deploy') + chalk.green(' - deploys the dist code on a specified location'));
           console.log(chalk.yellow(' gulp serve') + chalk.green(' - opens a live reload node server'));
-          console.log(chalk.yellow(' gulp dist') + chalk.green(' - prepares the dist directory'));
+          console.log(chalk.yellow(' gulp dist') + chalk.green(' - prepares the dist directory\n'));
         });
       }.bind(this)
     });

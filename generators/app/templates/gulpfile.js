@@ -12,16 +12,16 @@ var gulp = require('gulp'),
     path = require('path');
 
 gulp.task('default', ['dist'], function() {
-  gulp.watch('src/**/*' , ['deploy']);
+  gulp.watch('src/**/*' , ['dist']);
 });
 
 gulp.task('deploy', function() {
-  console.log("deploying");
+  console.log("deploying TODO: ");
 });
 
 gulp.task('index', function () {
   var target = gulp.src('./src/index.html');
-  var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false});
+  var sources = gulp.src(['./src/app/app.js', './src/**/*.js', './src/**/*.css'], {read: false});
   return target.pipe(inject(sources))
     .pipe(gulp.dest('./src'));
 });
@@ -51,7 +51,7 @@ gulp.task('html-temp-templates-clean', [ 'html-templates', 'dist' ], function() 
 });
 
 gulp.task('serve', function() {
-  gulp.watch( 'src/**/*' , ['deploy']);
+  gulp.watch( 'src/**/*' , ['dist']);
   return gulp.src('src')
     .pipe(webserver({
       livereload: true,
@@ -61,8 +61,8 @@ gulp.task('serve', function() {
 
 gulp.task('sass', function () {
   var src = 'src/**/**.scss';
-    return gulp.src('src')
-        .pipe(sass())
-        .pipe(concat('css' + '.css'))
-        .pipe(gulp.dest('dist'));
+  return gulp.src('src')
+      .pipe(sass())
+      .pipe(concat('css' + '.css'))
+      .pipe(gulp.dest('dist'));
 });

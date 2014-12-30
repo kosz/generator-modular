@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     watch = require('gulp-watch'),
     sourcemaps = require('gulp-sourcemaps'),
+    mainBowerFiles = require('main-bower-files'),
     path = require('path');
 
 gulp.task('default', ['dist'], function() {
@@ -20,13 +21,16 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('index', function () {
+
   var target = gulp.src('./src/index.html');
-  var sources = gulp.src(['./src/app/app.js', './src/**/*.js', './src/**/*.css'], {read: false});
-  return target.pipe(inject(sources))
-    .pipe(gulp.dest('./src'));
+  var sources = gulp.src(['./src/app/app.js', '!./src/bower_components/**/*', './src/**/*.js', './src/**/*.css'], {read: false});
+  target.pipe(inject(sources, {ignorePath: 'src', addRootSlash: false }))
+  .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {ignorePath: 'src', addRootSlash: false, name: 'bower'}))
+  .pipe(gulp.dest('./src'));
+
 });
 
-gulp.task('dist', ['html-templates'], function(done) {
+gulp.task('dist', ['html-templates', 'index'], function(done) {
   return gulp.src(['src/app/app.js', '!src/**/*.spec.js', 'src/**/*.js'])
     .pipe(concat('<%= name %>.js'))
     .pipe(gulp.dest('dist'))

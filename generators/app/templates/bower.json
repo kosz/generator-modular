@@ -1,7 +1,6 @@
 {
-  "name": "<%= name %>",
+  "name": "<%= config.get('name') %>",
   "version": "0.0.0",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -10,7 +9,9 @@
     "tests"
   ],
   "devDependencies": {
-    "angular": "~<%= angularVersion %>",
     "angular-mocks": "~<%= angularVersion %>"
+  },
+  "dependencies": {
+    "angular": "~<%= angularVersion %>"
   }
 }

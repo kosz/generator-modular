@@ -9,29 +9,33 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     watch = require('gulp-watch'),
     sourcemaps = require('gulp-sourcemaps'),
+    mainBowerFiles = require('main-bower-files'),
     path = require('path');
 
-gulp.task('default', ['dist'], function() {
-  gulp.watch('src/**/*' , ['deploy']);
+gulp.task('default', ['dist','serve'], function() {
+  gulp.watch('src/**/*' , ['dist']);
 });
 
 gulp.task('deploy', function() {
-  console.log("deploying");
+  console.log("deploying TODO: ");
 });
 
 gulp.task('index', function () {
+
   var target = gulp.src('./src/index.html');
-  var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], {read: false});
-  return target.pipe(inject(sources))
-    .pipe(gulp.dest('./src'));
+  var sources = gulp.src(['./src/app/app.js', '!./src/bower_components/**/*', './src/**/*.js', './src/**/*.css'], {read: false});
+  target.pipe(inject(sources, {ignorePath: 'src', addRootSlash: false }))
+  .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {ignorePath: 'src', addRootSlash: false, name: 'bower'}))
+  .pipe(gulp.dest('./src'));
+
 });
 
-gulp.task('dist', ['html-templates'], function(done) {
+gulp.task('dist', ['html-templates', 'index'], function(done) {
   return gulp.src(['src/app/app.js', '!src/**/*.spec.js', 'src/**/*.js'])
-    .pipe(concat('<%= name %>.js'))
+    .pipe(concat('<%= config.get("name") %>.js'))
     .pipe(gulp.dest('dist'))
     .pipe(uglify())
-    .pipe(rename('<%= name %>.min.js'))
+    .pipe(rename('<%= config.get("name") %>.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
@@ -40,7 +44,7 @@ gulp.task('html-templates', ['sass'], function() {
    return gulp.src([ 'src/**/*.html', '!src/index.html' ])
      .pipe(ngCache({
         filename : 'templates.js',
-        module : '<%= name %>'
+        module : '<%= config.get("name") %>'
       }))
      .pipe(gulp.dest('src'));
 });
@@ -50,8 +54,8 @@ gulp.task('html-temp-templates-clean', [ 'html-templates', 'dist' ], function() 
     .pipe(clean({ force: true }));
 });
 
-gulp.task('serve', function() {
-  gulp.watch( 'src/**/*' , ['deploy']);
+gulp.task('serve', ['dist'], function() {
+  //gulp.watch( 'src/**/*' , ['dist']);
   return gulp.src('src')
     .pipe(webserver({
       livereload: true,
@@ -61,8 +65,8 @@ gulp.task('serve', function() {
 
 gulp.task('sass', function () {
   var src = 'src/**/**.scss';
-    return gulp.src('src')
-        .pipe(sass())
-        .pipe(concat('css' + '.css'))
-        .pipe(gulp.dest('dist'));
+  return gulp.src('src')
+      .pipe(sass())
+      .pipe(concat('css' + '.css'))
+      .pipe(gulp.dest('dist'));
 });

@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     path = require('path');
 
-gulp.task('default', ['dist'], function() {
+gulp.task('default', ['dist','serve'], function() {
   gulp.watch('src/**/*' , ['dist']);
 });
 
@@ -32,10 +32,10 @@ gulp.task('index', function () {
 
 gulp.task('dist', ['html-templates', 'index'], function(done) {
   return gulp.src(['src/app/app.js', '!src/**/*.spec.js', 'src/**/*.js'])
-    .pipe(concat('<%= name %>.js'))
+    .pipe(concat('<%= config.get("name") %>.js'))
     .pipe(gulp.dest('dist'))
     .pipe(uglify())
-    .pipe(rename('<%= name %>.min.js'))
+    .pipe(rename('<%= config.get("name") %>.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist'));
 });
@@ -44,7 +44,7 @@ gulp.task('html-templates', ['sass'], function() {
    return gulp.src([ 'src/**/*.html', '!src/index.html' ])
      .pipe(ngCache({
         filename : 'templates.js',
-        module : '<%= name %>'
+        module : '<%= config.get("name") %>'
       }))
      .pipe(gulp.dest('src'));
 });
@@ -54,8 +54,8 @@ gulp.task('html-temp-templates-clean', [ 'html-templates', 'dist' ], function() 
     .pipe(clean({ force: true }));
 });
 
-gulp.task('serve', function() {
-  gulp.watch( 'src/**/*' , ['dist']);
+gulp.task('serve', ['dist'], function() {
+  //gulp.watch( 'src/**/*' , ['dist']);
   return gulp.src('src')
     .pipe(webserver({
       livereload: true,

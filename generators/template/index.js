@@ -1,4 +1,5 @@
 var generators = require('yeoman-generator');
+var chalk = require('chalk');
 
 module.exports = generators.Base.extend({
   constructor: function () {

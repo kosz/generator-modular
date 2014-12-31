@@ -38,3 +38,11 @@ Available generators:
 	- angular-webapp:template
 * Planned
 	- others
+
+## Contribute
+
+Development is done in the branch with the latest version number.
+
+## License
+
+[BSD license](http://opensource.org/licenses/bsd-license.php)

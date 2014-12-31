@@ -33,11 +33,11 @@ Run `gulp` to start the live-reload server and the watchers.
 Available generators:
 
 * Available
-	- angular-webapp
-	- angular-webapp:controller
-	- angular-webapp:template
+    - angular-webapp
+    - angular-webapp:controller
+    - angular-webapp:template
 * Planned
-	- others
+    - others
 
 ## Contribute
 

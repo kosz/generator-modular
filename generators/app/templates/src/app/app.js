@@ -1,1 +1,1 @@
-angular.module('<%= name %>', []);
+angular.module('<%= config.get("name") %>', []);

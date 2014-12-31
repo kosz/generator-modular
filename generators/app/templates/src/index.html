@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="<%= name %>">
+<html ng-app="<%= config.get('name') %>">
 <head>
   <title>My index</title>
   <!-- bower:css -->
@@ -12,7 +12,7 @@
   <!-- endinject -->
 </head>
 <body>
-  <h1>Hello <%= name %></h1> 
+  <h1>Hello <%= config.get('name') %></h1> 
   <!-- inject:js -->
   <!-- endinject -->
 </body>

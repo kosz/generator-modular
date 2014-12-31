@@ -50,7 +50,7 @@ module.exports = generators.Base.extend({
       default : this.appname
     }, function (answers) {
       this.log(answers.name);
-      this.name = answers.name;
+      this.config.set('name', answers.name);
       done();
     }.bind(this));
   },

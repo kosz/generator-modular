@@ -1,6 +1,7 @@
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
 
 module.exports = generators.Base.extend({
 
@@ -15,7 +16,7 @@ module.exports = generators.Base.extend({
   promptPath: function () {
 
     this.log(yosay(
-      'This will generate a ' + chalk.yellow('controller') + ', a ' + chalk.yellow('template') + ' and a ' + chalk.yellow('spec') + ' file'
+      'This will generate a ' + chalk.yellow('controller') + ', a ' + chalk.red('template') + ' and a ' + chalk.yellow('spec') + ' file'
     ));
 
     var done = this.async();
@@ -97,10 +98,10 @@ module.exports = generators.Base.extend({
 
   processTemplates: function () {
 
-    this.template('controller.controller.js', this.path + this.controllerName + '.js');
-    this.template('controller.controller.spec.js', this.path + this.controllerName + '.spec.js');
+    this.template('controller.controller.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.js');
+    this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.spec.js');
 
-    this.composeWith('angular-webapp:template', { options: { path: this.path, name: this.controllerName }});
+    this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName }});
 
   }
 

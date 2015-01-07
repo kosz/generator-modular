@@ -12,9 +12,9 @@
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.3",
+    "yosay": "^1.0.1",
     "chalk": "^0.5.1"
   },
   "devDependencies": {
-    "yosay": "^1.0.1"
   }
 }

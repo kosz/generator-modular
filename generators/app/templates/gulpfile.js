@@ -12,8 +12,8 @@ var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     path = require('path');
 
-gulp.task('default', ['dist','serve'], function() {
-  gulp.watch('src/**/*' , ['dist']);
+gulp.task('default', ['deploy', 'dist','serve'], function() {
+  gulp.watch(['src/**/*','!src/index.html'] , ['deploy', 'dist']);
 });
 
 gulp.task('deploy', function() {
@@ -30,7 +30,7 @@ gulp.task('index', function () {
 
 });
 
-gulp.task('dist', ['html-templates', 'index'], function(done) {
+gulp.task('dist', ['index'], function(done) {
   return gulp.src(['src/app/app.js', '!src/**/*.spec.js', 'src/**/*.js'])
     .pipe(concat('<%= config.get("name") %>.js'))
     .pipe(gulp.dest('dist'))

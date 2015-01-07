@@ -1,5 +1,6 @@
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
+var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
 
 module.exports = generators.Base.extend({
   constructor: function () {
@@ -29,7 +30,7 @@ module.exports = generators.Base.extend({
 
   processTemplates: function () {
 
-    this.template('template.html', this.path + this.name + '.html');
+    this.template('template.html', generatorWebappUtils.sanitizePath(this.path) + this.name + '.html');
 
   }
 });

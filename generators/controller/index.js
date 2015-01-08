@@ -2,6 +2,7 @@ var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
+var reusablePrompts = require('../../util/reusable-prompts.js');
 
 module.exports = generators.Base.extend({
 
@@ -13,57 +14,17 @@ module.exports = generators.Base.extend({
 
   },
 
-  promptPath: function () {
-
+  helloWorld: function () {
     this.log(yosay(
-      'This will generate a ' + chalk.yellow('controller') + ', a ' + chalk.red('template') + ' and a ' + chalk.yellow('spec') + ' file'
+      'This will generate a ' + chalk.yellow('controller') + ', a ' + chalk.green('template') + ' and a ' + chalk.yellow('spec') + ' file'
     ));
-
-    var done = this.async();
-    this.prompt({
-      type    : 'input',
-      name    : 'path',
-      message : 'Enter the path for this controller\n  Default: ' + chalk.yellow('src/app/'), 
-      default : 'src/app/',
-      store   : true
-    }, function (answers) {
-
-      this.path = answers.path;
-      done();
-    }.bind(this));
-
   },
 
-  promptInjections: function () {
+  promptPath: reusablePrompts.promptPath,
 
-    var done = this.async();
-    this.prompt({
-      type    : 'input',
-      name    : 'injections',
-      message : 'Enter a list of items to be injected into the controller, separated by commas\n  Example: ' + chalk.yellow('$scope,$http,someService'),
-      store   : true
-    }, function (answers) {
+  promptInjections: reusablePrompts.promptInjections, 
 
-      this.injections = answers.injections === '' ? [] : answers.injections.replace(/ /g, '').split(',');
-      done();
-    }.bind(this));
-
-  },
-
-  promptScopeMethods: function () {
-
-    var done = this.async();
-    this.prompt({
-      type    : 'input',
-      name    : 'scopeMethods',
-      message : 'Enter a list of methods to be declared on the scope, separated by commas\n  Example: ' + chalk.yellow('someMethod,anotherMethod'), 
-      store   : true
-    }, function (answers) {
-      this.scopeMethods = answers.scopeMethods === '' ? [] : answers.scopeMethods.replace(/ /g, '').split(',');
-      done();
-    }.bind(this));
-
-  },
+  promptScopeMethods: reusablePrompts.promptScopeMethods,
 
   promptControllerAs: function () {
 

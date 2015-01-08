@@ -48,3 +48,30 @@ exports.promptScopeMethods = function () {
   }.bind(this));
 
 };
+
+exports.promptTemplateCreation = function () { 
+
+  var done = this.async(); 
+
+  this.prompt({
+    type: 'list',
+    name: 'createTemplate',
+    message: 'Would you like to create a template associated with this ?',
+    choices: [
+      "yes",
+      "no"
+    ],
+    filter: function (val) {
+      var filterMap = {
+        "yes": 'true', 
+        "no": 'false'
+      }
+      return filterMap[val];
+    },  
+    store: true,
+  }, function (answers) {
+    this.createTemplate = answers.createTemplate;
+    done();
+  }.bind(this));
+
+};

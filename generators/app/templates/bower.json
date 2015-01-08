@@ -12,6 +12,7 @@
     "angular-mocks": "~<%= angularVersion %>"
   },
   "dependencies": {
-    "angular": "~<%= angularVersion %>"
+    "angular": "~<%= angularVersion %>",
+    "angular-route": "~<%= angularVersion %>"
   }
 }

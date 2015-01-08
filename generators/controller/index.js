@@ -10,21 +10,28 @@ module.exports = generators.Base.extend({
 
     generators.Base.apply(this, arguments);
 
-    this.argument('controllerName', { type: String, required: true });
+    this.argument('controllerName', { type: String, required: false });
+    if ( this.controllerName === undefined ) { this.controllerName = this.options.name; }
+    this.path = this.options.path;
 
   },
 
   helloWorld: function () {
+    if (this.options.path) { return; }
     this.log(yosay(
       'This will generate a ' + chalk.yellow('controller') + ', a ' + chalk.green('template') + ' and a ' + chalk.yellow('spec') + ' file'
     ));
   },
 
-  promptPath: reusablePrompts.promptPath,
+  promptPath: function() { 
+    if (!this.path) { reusablePrompts.promptPath.apply(this); }
+  },
 
   promptInjections: reusablePrompts.promptInjections, 
 
   promptScopeMethods: reusablePrompts.promptScopeMethods,
+
+  promptTemplateCreation: reusablePrompts.promptTemplateCreation,
 
   promptControllerAs: function () {
 
@@ -59,10 +66,13 @@ module.exports = generators.Base.extend({
 
   processTemplates: function () {
 
-    this.template('controller.controller.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.js');
-    this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.spec.js');
+    this.template('controller.controller.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.js');
+    this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.spec.js');
 
-    this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName }});
+    if ( this.createTemplate === 'true' ) { 
+      console.log("controllerName",this.controllerName);
+      this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
+    }
 
   }
 

@@ -2,6 +2,8 @@ var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
+var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
+
 module.exports = generators.Base.extend({
   constructor: function () {
     generators.Base.apply(this, arguments);
@@ -39,6 +41,41 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
+
+  promptProjectDependencies: function () {
+    var done = this.async();
+
+    this.prompt({
+      type: 'checkbox',
+      name: 'projectDependencies',
+      message: 'Select which packages you would like to preconfigure with this project',
+      choices: [
+      "angular/bootstrap-ui",
+      "ngRoute",
+      "ngResource",
+      "angular-local-storage",
+      "angular-translate",
+      "moment.js"
+      ],
+      filter: function (val) {
+        var filterMap = {
+          "angular/bootstrap-ui": 'TODO', 
+          "ngRoute": 'TODO', 
+          "ngResource": 'TODO', 
+          "angular-local-storage": 'TODO', 
+          "angular-translate": 'TODO', 
+          "moment.js": 'TODO'
+        }
+        return filterMap[val];
+      },  
+      store: true,
+    }, function (answers) {
+      this.log(answers.projectType);
+      this.projectType = answers.projectType;
+      done();
+    }.bind(this));
+  },
+
 
   promptProjectName: function () {
     var done = this.async();
@@ -89,6 +126,11 @@ module.exports = generators.Base.extend({
     this.template('src/index.html', 'src/index.html');
    
     this.template('src/app/app.js', 'src/app/app.js');
+
+    //
+    // main route /
+    //  
+    this.composeWith('angular-webapp:controller', { options: { path: generatorWebappUtils.sanitizePath('src/app/main'), name: 'mainCtrl' }});
 
   },
   install: function () {

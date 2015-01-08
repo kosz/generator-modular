@@ -59,6 +59,7 @@ gulp.task('serve', ['dist'], function() {
   return gulp.src('src')
     .pipe(webserver({
       livereload: true,
+      fallback: '/index.html',
       open: true
     }));
 });

@@ -3,6 +3,7 @@ var chalk = require('chalk');
 var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
 
 module.exports = generators.Base.extend({
+
   constructor: function () {
 
     generators.Base.apply(this, arguments);
@@ -33,4 +34,5 @@ module.exports = generators.Base.extend({
     this.template('template.html', generatorWebappUtils.sanitizePath(this.path) + this.name + '.html');
 
   }
+
 });

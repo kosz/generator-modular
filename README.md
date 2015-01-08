@@ -38,6 +38,8 @@ Available generators:
     - angular-webapp
     - angular-webapp:controller
     - angular-webapp:template
+    - angular-webapp:service
+    - angular-webapp:route
 * Planned
     - others
 

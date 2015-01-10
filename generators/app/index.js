@@ -113,10 +113,10 @@ module.exports = generators.Base.extend({
     // project setup
     //
     this.template('gulpfile.js', 'gulpfile.js');
-    this.template('.gitignore', '.gitignore');
+    this.template('gitignore', '.gitignore');
     this.template('bower.json', 'bower.json');
-    this.template('.bowerrc', '.bowerrc');
-    this.template('.jshintrc', '.jshintrc');
+    this.template('bowerrc', '.bowerrc');
+    this.template('jshintrc', '.jshintrc');
     this.template('package.json', 'package.json');
     this.template('editorconfig', '.editorconfig');
   

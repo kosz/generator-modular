@@ -72,7 +72,6 @@ module.exports = generators.Base.extend({
     this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.spec.js');
 
     if ( this.createTemplate === 'true' ) { 
-      console.log("controllerName",this.controllerName);
       this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
     }
 

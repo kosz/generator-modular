@@ -117,6 +117,7 @@ module.exports = generators.Base.extend({
     this.template('bower.json', 'bower.json');
     this.template('bowerrc', '.bowerrc');
     this.template('jshintrc', '.jshintrc');
+    this.template('travis.yml', '.travis.yml');
     this.template('package.json', 'package.json');
     this.template('karma.conf.js', 'karma.conf.js');
     this.template('editorconfig', '.editorconfig');
@@ -143,20 +144,22 @@ module.exports = generators.Base.extend({
           console.log(chalk.bold.green('Finished setting up ' + name + ' run gulp to get started\n'));
           console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-angular-webapp') + '\n' );
 
-          console.log(chalk.bold.yellow('testing :'));
-
-          console.log(chalk.yellow(' npm test') + chalk.green(' - runs karma/jasmine tests'));
-          console.log(chalk.yellow(' protractor') + chalk.green(' - todo') + '\n');
-
           console.log(chalk.bold.yellow('gulp :'));
           console.log(chalk.yellow(' gulp') + chalk.green(' - default task, watches and runs : ' + 
               chalk.yellow('serve') + ', ' + 
+              chalk.yellow('test') + ', ' + 
               chalk.yellow('dist') + ', ' +
               chalk.yellow('deploy')
           ));
           console.log(chalk.yellow(' gulp deploy') + chalk.green(' - deploys the dist code on a specified location'));
           console.log(chalk.yellow(' gulp serve') + chalk.green(' - opens a live reload node server'));
           console.log(chalk.yellow(' gulp dist') + chalk.green(' - prepares the dist directory\n'));
+
+          console.log(chalk.bold.yellow('testing :'));
+
+          console.log(chalk.yellow(' npm test/karma start') + chalk.green(' - NOT NEEDED: tests will be ran by the gulp watcher'));
+          console.log(chalk.yellow(' protractor') + chalk.green(' - todo') + '\n');
+
         });
       }.bind(this)
     });

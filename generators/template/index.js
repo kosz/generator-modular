@@ -31,7 +31,7 @@ module.exports = generators.Base.extend({
 
   processTemplates: function () {
 
-    this.template('template.html', generatorWebappUtils.sanitizePath(this.path) + this.name + '.html');
+    this.template('template.html', generatorWebappUtils.sanitizePath(this.path) + this.name + (this.name.match('.html') ? '' : '.html'));
 
   }
 

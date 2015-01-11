@@ -118,6 +118,7 @@ module.exports = generators.Base.extend({
     this.template('bowerrc', '.bowerrc');
     this.template('jshintrc', '.jshintrc');
     this.template('package.json', 'package.json');
+    this.template('karma.conf.js', 'karma.conf.js');
     this.template('editorconfig', '.editorconfig');
   
     //
@@ -133,6 +134,7 @@ module.exports = generators.Base.extend({
     this.composeWith('angular-webapp:controller', { options: { path: generatorWebappUtils.sanitizePath('src/app/main'), name: 'mainCtrl' }});
 
   },
+
   install: function () {
     var name = this.name;
     this.installDependencies({

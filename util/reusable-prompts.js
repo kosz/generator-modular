@@ -27,8 +27,9 @@ exports.promptInjections = function () {
     message : 'Enter a list of items to be injected, separated by commas\n  Example: ' + chalk.yellow('$scope,$http,someService'),
     store   : true
   }, function (answers) {
-
-    this.injections = answers.injections === '' ? [] : answers.injections.replace(/ /g, '').split(',');
+    var emptyArray = [];
+    if (this.controllerName) { emptyArray.push('$scope'); } 
+    this.injections = answers.injections === '' ? emptyArray : answers.injections.replace(/ /g, '').split(',');
     done();
   }.bind(this));
 

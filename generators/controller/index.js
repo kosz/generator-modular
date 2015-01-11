@@ -14,6 +14,8 @@ module.exports = generators.Base.extend({
     if ( this.controllerName === undefined ) { this.controllerName = this.options.name; }
     this.path = this.options.path;
 
+    this.generatorWebappUtils = generatorWebappUtils;
+
   },
 
   helloWorld: function () {

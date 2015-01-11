@@ -24,9 +24,12 @@ yo angular-webapp
 Run `gulp` to start the live-reload server and the watchers.
 
 ## Prerequisites
-* Node
+* node
 * npm
 * bower
+* gulp
+* yeoman
+* karma
 
 ## Generators
 

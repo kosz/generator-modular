@@ -2,7 +2,7 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-angular-webapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![npm version](https://badge.fury.io/js/generator-angular-webapp.svg)](http://badge.fury.io/js/generator-angular-webapp)
 > Yeoman generator for creating Angular Front End Applications and Modules. Uses gulp, live reload, watchers, bower, automatic injection of js and css into html, and follows the [Angular Best Practice for App Structure](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub) 
 
-> **Under Construction, pre alpha quality, currently version 0.1.3** 
+> **Under Construction, pre alpha quality, currently version 0.1.4** 
 
 ## Usage
 
@@ -21,7 +21,7 @@ Run `yo angular-webapp`, optionally passing an app name:
 yo angular-webapp
 ```
 
-Run `gulp` to start the live-reload server and the watchers.
+Run `gulp` to start the live-reload server and the watchers. For a more indepth usage document have a look at [this](https://github.com/kosz/generator-angular-webapp/wiki/Using-the-angular-webapp-generator) `Wiki page`.
 
 ## Prerequisites
 * node
@@ -29,7 +29,6 @@ Run `gulp` to start the live-reload server and the watchers.
 * bower
 * gulp
 * yeoman
-* karma
 
 ## Generators
 
@@ -44,9 +43,9 @@ Available generators:
 * Planned
     - others
 
-## Contribute
+## Contributing
 
-Development is done in the branch with the latest version number.
+Should you wish to contribute, feel free to fork and open pull requests from your fork.
 
 ## License
 

@@ -26,7 +26,7 @@ gulp.task('index', ['karma-inject'], function () {
   var target = gulp.src('./src/index.html');
   var sources = gulp.src(['./src/app/app.js', '!./src/bower_components/**/*', '!./src/**/*.spec.js', './src/**/*.js', './src/**/*.css'], {read: false});
   target.pipe(inject(sources, {ignorePath: 'src', addRootSlash: false }))
-  .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {ignorePath: 'src', addRootSlash: false, name: 'bower'}))
+  .pipe(inject(gulp.src(mainBowerFiles({ filter: /^((?!(angular-mocks.js)).)*$/ }), {read: false}), {ignorePath: 'src', addRootSlash: false, name: 'bower'}))
   .pipe(gulp.dest('./src'));
 
 });
@@ -49,7 +49,7 @@ gulp.task('karma-inject', function () {
       transform: function (filepath, file, i, length) {
         return '  "' + filepath + '"' + (i + 1 < length ? ',' : '');
       }}))
-    .pipe(inject(gulp.src(mainBowerFiles()),{starttag: '// gulp-inject:mainBowerFiles', endtag: '// gulp-inject:mainBowerFiles:end', addRootSlash: false, 
+    .pipe(inject(gulp.src(mainBowerFiles({ filter: /.js$/})),{starttag: '// gulp-inject:mainBowerFiles', endtag: '// gulp-inject:mainBowerFiles:end', addRootSlash: false, 
       transform: function (filepath, file, i, length) {
         return '  "' + filepath + '",';
       }}))

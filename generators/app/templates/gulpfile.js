@@ -11,10 +11,26 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     mainBowerFiles = require('main-bower-files'),
     karma = require('gulp-karma'),
+    ngdocs = require('gulp-ngdocs'),
     path = require('path');
 
-gulp.task('default', ['deploy', 'dist','serve'], function() {
-  gulp.watch(['src/**/*','!src/index.html'] , ['deploy', 'dist']);
+gulp.task('ngdocs', ['deploy'], function () {
+  var options = {
+    //scripts: ['src/app.js'],
+    html5Mode: true,
+    startPage: '/api',
+    title: "<%= config.get('name') %>",
+    image: "/yeoman.png",
+    imageLink: "/api",
+    titleLink: "/api"
+  }
+  return gulp.src(['src/**/*.js','!src/ng-docs/**/*', '!src/bower_components/**/*'])
+    .pipe(ngdocs.process(options))
+    .pipe(gulp.dest('./src/ng-docs'));
+});
+
+gulp.task('default', ['ngdocs', 'deploy', 'dist','serve'], function() {
+  gulp.watch(['src/**/*','!src/index.html', '!src/ng-docs/**/*'] , ['ngdocs', 'deploy', 'dist']);
 });
 
 gulp.task('deploy', ['test'], function() {
@@ -24,7 +40,7 @@ gulp.task('deploy', ['test'], function() {
 gulp.task('index', ['karma-inject'], function () {
 
   var target = gulp.src('./src/index.html');
-  var sources = gulp.src(['./src/app/app.js', '!./src/bower_components/**/*', '!./src/**/*.spec.js', './src/**/*.js', './src/**/*.css'], {read: false});
+  var sources = gulp.src(['./src/app/app.js', '!./src/ng-docs/**/*', '!./src/bower_components/**/*', '!./src/**/*.spec.js', './src/**/*.js', './src/**/*.css'], {read: false});
   target.pipe(inject(sources, {ignorePath: 'src', addRootSlash: false }))
   .pipe(inject(gulp.src(mainBowerFiles({ filter: /^((?!(angular-mocks.js)).)*$/ }), {read: false}), {ignorePath: 'src', addRootSlash: false, name: 'bower'}))
   .pipe(gulp.dest('./src'));
@@ -42,14 +58,14 @@ gulp.task('test', function () {
 });
 
 gulp.task('karma-inject', function () {
-  var sources = gulp.src(['./src/app/app.js', '!./src/bower_components/**/*', './src/**/*.js']);
+  var sources = gulp.src(['./src/app/app.js', '!./src/ng-docs/**/*', '!./src/bower_components/**/*', './src/**/*.js']);
 
   return gulp.src('./karma.conf.js')
-    .pipe(inject(sources,{starttag: '// gulp-inject:src', endtag: '// gulp-inject:src:end', addRootSlash: false, 
+    .pipe(inject(sources,{starttag: '// gulp-inject:src', endtag: '// gulp-inject:src:end', addRootSlash: false,
       transform: function (filepath, file, i, length) {
         return '  "' + filepath + '"' + (i + 1 < length ? ',' : '');
       }}))
-    .pipe(inject(gulp.src(mainBowerFiles({ filter: /.js$/})),{starttag: '// gulp-inject:mainBowerFiles', endtag: '// gulp-inject:mainBowerFiles:end', addRootSlash: false, 
+    .pipe(inject(gulp.src(mainBowerFiles({ filter: /.js$/})),{starttag: '// gulp-inject:mainBowerFiles', endtag: '// gulp-inject:mainBowerFiles:end', addRootSlash: false,
       transform: function (filepath, file, i, length) {
         return '  "' + filepath + '",';
       }}))

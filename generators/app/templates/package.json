@@ -19,10 +19,11 @@
     "gulp-sourcemaps": "^1.2.8",
     "main-bower-files": "^2.4.1",
     "gulp-inject": "^1.1.1",
-    "karma": "^0.12.31", 
+    "karma": "^0.12.31",
     "gulp-karma": "0.0.4",
     "jasmine-core": "^2.1.3",
     "karma-jasmine": "^0.3.4",
+    "gulp-ngdocs": "^0.2.7",
     "karma-phantomjs-launcher": "^0.1.4"
   }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="<%= config.get('name') %>">
 <head>
-  <title>My index</title>
+  <title><%= config.get('name') %></title>
   <base href="/">
 
   <!-- bower:css -->
@@ -14,8 +14,9 @@
   <!-- endinject -->
 </head>
 <body>
-  <h1>Hello <%= config.get('name') %></h1> 
+  <div ng-include="'app/main/header.html'"></div>
   <ng-view></ng-view>
+  <div ng-include="'app/main/footer.html'"></div>
   <!-- inject:js -->
   <!-- endinject -->
 </body>

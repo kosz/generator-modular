@@ -14,13 +14,13 @@ var gulp = require('gulp'),
     ngdocs = require('gulp-ngdocs'),
     path = require('path');
 
-gulp.task('ngdocs', ['deploy'], function () {
+gulp.task('ngdocs', function () {
   var options = {
     //scripts: ['src/app.js'],
     html5Mode: true,
     startPage: '/api',
     title: "<%= config.get('name') %>",
-    image: "/yeoman.png",
+    image: "../.tmp/img/yo.png",
     imageLink: "/api",
     titleLink: "/api"
   }
@@ -29,15 +29,15 @@ gulp.task('ngdocs', ['deploy'], function () {
     .pipe(gulp.dest('./src/ng-docs'));
 });
 
-gulp.task('default', ['ngdocs', 'deploy', 'dist','serve'], function() {
-  gulp.watch(['src/**/*','!src/index.html', '!src/ng-docs/**/*'] , ['ngdocs', 'deploy', 'dist']);
+gulp.task('default', ['deploy', 'serve'], function() {
+  gulp.watch(['!src/index.html', '!src/ng-docs/**/*', 'src/**/*'] , ['deploy']);
 });
 
 gulp.task('deploy', ['test'], function() {
   console.log("deploying TODO: ");
 });
 
-gulp.task('index', ['karma-inject'], function () {
+gulp.task('index', function () {
 
   var target = gulp.src('./src/index.html');
   var sources = gulp.src(['./src/app/app.js', '!./src/ng-docs/**/*', '!./src/bower_components/**/*', '!./src/**/*.spec.js', './src/**/*.js', './src/**/*.css'], {read: false});
@@ -47,17 +47,17 @@ gulp.task('index', ['karma-inject'], function () {
 
 });
 
-gulp.task('test', function () {
+gulp.task('test', ['karma-inject'], function () {
  return gulp.src('./http://stackoverflow.com/questions/22413767/angular-testing-with-karma-module-is-not-defined :)')
     .pipe(karma({
       configFile: 'karma.conf.js',
       action: 'run'
     })).on('error', function (err) {
-      gulp.watch(['src/**/*','!src/index.html'] , ['deploy', 'dist']); //TODO: warning copy pasted from deploy, workarround for gulp errors
+      gulp.watch(['src/**/*','!src/index.html'] , ['deploy']); //TODO: warning copy pasted from deploy, workarround for gulp errors
     });
 });
 
-gulp.task('karma-inject', function () {
+gulp.task('karma-inject', ['dist'], function () {
   var sources = gulp.src(['./src/app/app.js', '!./src/ng-docs/**/*', '!./src/bower_components/**/*', './src/**/*.js']);
 
   return gulp.src('./karma.conf.js')
@@ -96,7 +96,7 @@ gulp.task('html-temp-templates-clean', [ 'html-templates', 'dist' ], function() 
     .pipe(clean({ force: true }));
 });
 
-gulp.task('serve', ['dist'], function() {
+gulp.task('serve', ['deploy'], function() {
   //gulp.watch( 'src/**/*' , ['dist']);
   return gulp.src('src')
     .pipe(webserver({
@@ -107,9 +107,9 @@ gulp.task('serve', ['dist'], function() {
 });
 
 gulp.task('sass', function () {
-  var src = 'src/**/**.scss';
-  return gulp.src('src')
+  var src = 'src/**/*.scss';
+  return gulp.src(src)
       .pipe(sass())
       .pipe(concat('css' + '.css'))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest('src/.tmp'));
 });

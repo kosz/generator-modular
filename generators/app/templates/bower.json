@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "angular": "~<%= angularVersion %>",
+    "bootstrap": "~3.3.1",
     "angular-route": "~<%= angularVersion %>",
     "angular-mocks": "~<%= angularVersion %>"
   }

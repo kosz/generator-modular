@@ -14,6 +14,10 @@ module.exports = generators.Base.extend({
     if ( this.controllerName === undefined ) { this.controllerName = this.options.name; }
     this.path = this.options.path;
 
+    this.injections = this.options.injections;
+    this.scopeMethods = this.options.scopeMethods;
+    this.createTemplate = this.options.createTemplate;
+  
     this.generatorWebappUtils = generatorWebappUtils;
 
   },
@@ -36,7 +40,7 @@ module.exports = generators.Base.extend({
   promptTemplateCreation: reusablePrompts.promptTemplateCreation,
 
   promptControllerAs: function () {
-
+    
     if (this.scopeMethods.length > 0) { 
       var done = this.async();
 
@@ -71,7 +75,7 @@ module.exports = generators.Base.extend({
     this.template('controller.controller.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.js');
     this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.spec.js');
 
-    if ( this.createTemplate === 'true' ) { 
+    if ( this.createTemplate === 'true' ) { // refactor to use boolean not strings
       this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
     }
 

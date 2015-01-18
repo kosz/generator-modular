@@ -25,4 +25,32 @@ angular.module('<%= config.get("name") %>', [ 'ngRoute' ])
 
     $locationProvider.html5Mode(true);
 
+}])
+/**
+ * @ngdoc overview
+ * @name $rootScope
+ *
+ * @description
+ * Global Utility functions attached on the $rootScope of the ngdocs module
+ **/
+.run([ '$rootScope', '$location', function($rootScope,$location) {
+  /**
+   *
+   * @ngdoc function
+   * @name $rootScope.isActive
+   *
+   * @description
+   * Global utility function,
+   * used to apply active classes to link buttons
+   *
+   * @example
+   <pre>
+     <a href="/example" ng-class="{ 'active': isActive('/example') }">
+       Example
+     </a>
+   </pre>
+   */
+  $rootScope.isActive = function (href) {
+    return href === $location.path();
+  };
 }]);

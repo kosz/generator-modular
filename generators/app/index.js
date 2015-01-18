@@ -29,11 +29,11 @@ module.exports = generators.Base.extend({
       ],
       filter: function (val) {
         var filterMap = {
-          "Angular Web App": 'Webapp', 
+          "Angular Web App": 'Webapp',
           "Module to be included in other Angular Web Apps": 'Module'
         }
         return filterMap[val];
-      },  
+      },
       store: true,
     }, function (answers) {
       this.log(answers.projectType);
@@ -59,15 +59,15 @@ module.exports = generators.Base.extend({
       ],
       filter: function (val) {
         var filterMap = {
-          "angular/bootstrap-ui": 'TODO', 
-          "ngRoute": 'TODO', 
-          "ngResource": 'TODO', 
-          "angular-local-storage": 'TODO', 
-          "angular-translate": 'TODO', 
+          "angular/bootstrap-ui": 'TODO',
+          "ngRoute": 'TODO',
+          "ngResource": 'TODO',
+          "angular-local-storage": 'TODO',
+          "angular-translate": 'TODO',
           "moment.js": 'TODO'
         }
         return filterMap[val];
-      },  
+      },
       store: true,
     }, function (answers) {
       this.log(answers.projectType);
@@ -121,18 +121,38 @@ module.exports = generators.Base.extend({
     this.template('package.json', 'package.json');
     this.template('karma.conf.js', 'karma.conf.js');
     this.template('editorconfig', '.editorconfig');
-  
+
     //
-    // angular app setup 
+    // angular app setup
     //
     this.template('src/index.html', 'src/index.html');
-   
+
     this.template('src/app/app.js', 'src/app/app.js');
 
     //
     // main route /
-    //  
-    this.composeWith('angular-webapp:controller', { options: { path: generatorWebappUtils.sanitizePath('src/app/main'), name: 'mainCtrl' }});
+    //
+    this.composeWith('angular-webapp:controller', {
+      options: {
+        path: generatorWebappUtils.sanitizePath('src/app/main'),
+        injections: [],
+        scopeMethods: [],
+        createTemplate: 'false',
+        name: 'mainCtrl'
+      }
+    });
+
+    this.template('src/app/main/main.html', 'src/app/main/main.html');
+    this.template('src/app/main/header.html', 'src/app/main/header.html');
+    this.template('src/app/main/footer.html', 'src/app/main/footer.html');
+
+    this.template('src/app/app.scss', 'src/app/app.scss');
+
+    //
+    // example route /exampleRoute
+    //
+    this.composeWith('angular-webapp:route', { options: { path: generatorWebappUtils.sanitizePath('src/app/exampleRoute'), name: 'exampleRoute' }});
+    this.directory('src/tmp', 'src/.tmp');
 
   },
 
@@ -140,14 +160,14 @@ module.exports = generators.Base.extend({
     var name = this.name;
     this.installDependencies({
       callback: function () {
-        this.spawnCommand('gulp', ['index']).on('close', function (code) {
+        this.spawnCommand('gulp', ['index','ngdocs']).on('close', function (code) {
           console.log(chalk.bold.green('Finished setting up ' + name + ' run gulp to get started\n'));
           console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-angular-webapp') + '\n' );
 
           console.log(chalk.bold.yellow('gulp :'));
-          console.log(chalk.yellow(' gulp') + chalk.green(' - default task, watches and runs : ' + 
-              chalk.yellow('serve') + ', ' + 
-              chalk.yellow('test') + ', ' + 
+          console.log(chalk.yellow(' gulp') + chalk.green(' - default task, watches and runs : ' +
+              chalk.yellow('serve') + ', ' +
+              chalk.yellow('test') + ', ' +
               chalk.yellow('dist') + ', ' +
               chalk.yellow('deploy')
           ));

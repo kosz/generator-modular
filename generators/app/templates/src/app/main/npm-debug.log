@@ -1,0 +1,25 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'link' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose linkPkg /src/opensource/generator-angular-webapp/generators/app/templates
+5 error Error: Invalid name: "<%= config.get('name') %>"
+5 error     at ensureValidName (/usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/fixer.js:302:15)
+5 error     at Object.module.exports.fixNameField (/usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/fixer.js:206:5)
+5 error     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/normalize.js:29:38
+5 error     at Array.forEach (native)
+5 error     at normalize (/usr/local/lib/node_modules/npm/node_modules/read-package-json/node_modules/normalize-package-data/lib/normalize.js:28:15)
+5 error     at final (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:328:33)
+5 error     at then (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:126:33)
+5 error     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:302:48
+5 error     at fs.js:207:20
+5 error     at OpenReq.Req.done (/usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:144:5)
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Darwin 14.0.0
+8 error command "node" "/usr/local/bin/npm" "link"
+9 error cwd /src/opensource/generator-angular-webapp/generators/app/templates/src/app/main
+10 error node -v v0.10.26
+11 error npm -v 1.4.3
+12 verbose exit [ 1, true ]

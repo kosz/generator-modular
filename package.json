@@ -1,10 +1,10 @@
 {
-  "name": "generator-angular-webapp",
-  "version": "0.1.5",
+  "name": "generator-modular",
+  "version": "0.0.1",
   "author": "Cosmin Ronnin <coszmin@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kosz/generator-angular-webapp"
+    "url": "https://github.com/kosz/generator-modular"
   },
   "description": "Generator for Angular Front End apps using gulp and following the google recommendations for project file structure",
   "keywords": [

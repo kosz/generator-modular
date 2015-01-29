@@ -1,6 +1,6 @@
 
 # AngularJS Webapp Generator 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-angular-webapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/kosz/generator-angular-webapp.png?label=ready&title=Ready)](https://waffle.io/kosz/generator-angular-webapp) [![npm version](https://badge.fury.io/js/generator-angular-webapp.svg)](http://badge.fury.io/js/generator-angular-webapp) 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-angular-webapp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/kosz/generator-angular-webapp.png?label=ready&title=Ready)](https://waffle.io/kosz/generator-angular-webapp) [![Code Climate](https://codeclimate.com/github/kosz/generator-angular-webapp/badges/gpa.svg)](https://codeclimate.com/github/kosz/generator-angular-webapp) [![npm version](https://badge.fury.io/js/generator-angular-webapp.svg)](http://badge.fury.io/js/generator-angular-webapp) 
 > Yeoman generator for creating Angular Front End Applications and Modules. Uses gulp, live reload, watchers, bower, automatic injection of js and css into html, and follows the [Angular Best Practice for App Structure](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub) 
 
 > **Under Construction, pre alpha quality work in progress, currently version 0.1.5** 

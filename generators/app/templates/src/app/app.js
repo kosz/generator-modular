@@ -16,7 +16,7 @@ angular.module('<%= config.get("name") %>', [ 'ngRoute' ])
 
     $routeProvider
       .when('/', {
-        templateUrl: 'app/main/main.html',
+        templateUrl: 'routes/main/main.html',
         controller: 'mainCtrl'
       })
       .otherwise({

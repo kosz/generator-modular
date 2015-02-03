@@ -16,7 +16,7 @@ module.exports = generators.Base.extend({
     var done = this.async();
 
     this.log(yosay(
-      'Welcome to the ' + chalk.red('angular-webapp') + ' generator!'
+      'Welcome to the ' + chalk.red('modular angular') + ' generator!'
     ));
 
     this.prompt({
@@ -113,6 +113,9 @@ module.exports = generators.Base.extend({
     // project setup
     //
     this.template('gulpfile.js', 'gulpfile.js');
+
+    this.directory('gulp', 'gulp');
+
     this.template('gitignore', '.gitignore');
     this.template('bower.json', 'bower.json');
     this.template('bowerrc', '.bowerrc');
@@ -132,9 +135,9 @@ module.exports = generators.Base.extend({
     //
     // main route /
     //
-    this.composeWith('angular-webapp:controller', {
+    this.composeWith('modular:controller', {
       options: {
-        path: generatorWebappUtils.sanitizePath('src/app/main'),
+        path: generatorWebappUtils.sanitizePath('src/routes/main'),
         injections: [],
         scopeMethods: [],
         createTemplate: 'false',
@@ -142,17 +145,18 @@ module.exports = generators.Base.extend({
       }
     });
 
-    this.template('src/app/main/main.html', 'src/app/main/main.html');
-    this.template('src/app/main/header.html', 'src/app/main/header.html');
-    this.template('src/app/main/footer.html', 'src/app/main/footer.html');
+    this.template('src/routes/main/main.html', 'src/routes/main/main.html');
+    this.template('src/routes/main/header.html', 'src/routes/main/header.html');
+    this.template('src/routes/main/footer.html', 'src/routes/main/footer.html');
 
     this.template('src/app/app.scss', 'src/app/app.scss');
+    this.template('src/app/vendor.scss', '.tmp/serve/app/vendor.css'); // TODO: vendor.css confusion
 
     //
     // example route /exampleRoute
     //
-    this.composeWith('angular-webapp:route', { options: { path: generatorWebappUtils.sanitizePath('src/app/exampleRoute'), name: 'exampleRoute' }});
-    this.directory('src/tmp', 'src/.tmp');
+    this.composeWith('modular:route', { options: { path: generatorWebappUtils.sanitizePath('src/routes/exampleRoute'), name: 'exampleRoute' }});
+    this.directory('src/assets', 'src/assets');
 
   },
 
@@ -160,9 +164,9 @@ module.exports = generators.Base.extend({
     var name = this.name;
     this.installDependencies({
       callback: function () {
-        this.spawnCommand('gulp', ['index','ngdocs']).on('close', function (code) {
+//        this.spawnCommand('gulp', ['index','ngdocs']).on('close', function (code) { // TODO
           console.log(chalk.bold.green('Finished setting up ' + name + ' run gulp to get started\n'));
-          console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-angular-webapp') + '\n' );
+          console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-modular') + '\n' );
 
           console.log(chalk.bold.yellow('gulp :'));
           console.log(chalk.yellow(' gulp') + chalk.green(' - default task, watches and runs : ' +
@@ -180,7 +184,7 @@ module.exports = generators.Base.extend({
           console.log(chalk.yellow(' npm test/karma start') + chalk.green(' - NOT NEEDED: tests will be ran by the gulp watcher'));
           console.log(chalk.yellow(' protractor') + chalk.green(' - todo') + '\n');
 
-        });
+//        });
       }.bind(this)
     });
   }

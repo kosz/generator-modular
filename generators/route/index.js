@@ -34,7 +34,7 @@ module.exports = generators.Base.extend({
 
     this.template('index.js', generatorWebappUtils.sanitizePath(this.path) + 'index.js');
 
-    this.composeWith('angular-webapp:controller', {
+    this.composeWith('modular:controller', {
       options:
         {
           path: generatorWebappUtils.sanitizePath(this.path),

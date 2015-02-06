@@ -17,7 +17,7 @@ module.exports = generators.Base.extend({
     this.injections = this.options.injections;
     this.scopeMethods = this.options.scopeMethods;
     this.createTemplate = this.options.createTemplate;
-  
+
     this.generatorWebappUtils = generatorWebappUtils;
 
   },
@@ -29,19 +29,19 @@ module.exports = generators.Base.extend({
     ));
   },
 
-  promptPath: function() { 
+  promptPath: function() {
     if (!this.path) { reusablePrompts.promptPath.apply(this); }
   },
 
-  promptInjections: reusablePrompts.promptInjections, 
+  promptInjections: reusablePrompts.promptInjections,
 
   promptScopeMethods: reusablePrompts.promptScopeMethods,
 
   promptTemplateCreation: reusablePrompts.promptTemplateCreation,
 
   promptControllerAs: function () {
-    
-    if (this.scopeMethods.length > 0) { 
+
+    if (this.scopeMethods.length > 0) {
       var done = this.async();
 
       this.prompt({
@@ -54,19 +54,19 @@ module.exports = generators.Base.extend({
         ],
         filter: function (val) {
           var filterMap = {
-            "Use $scope": 'false', 
+            "Use $scope": 'false',
             "Use this, and declare controller as in your html": 'true'
           }
           return filterMap[val];
-        },  
+        },
         store: true,
       }, function (answers) {
         this.controllerAs = answers.controllerAs;
         done();
       }.bind(this));
-    } else { 
-      this.controllerAs = 'false'; //TODO: not thrilled with this 
-    } 
+    } else {
+      this.controllerAs = 'false'; //TODO: not thrilled with this
+    }
 
   },
 
@@ -76,7 +76,7 @@ module.exports = generators.Base.extend({
     this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.spec.js');
 
     if ( this.createTemplate === 'true' ) { // refactor to use boolean not strings
-      this.composeWith('angular-webapp:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
+      this.composeWith('modular:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
     }
 
   }

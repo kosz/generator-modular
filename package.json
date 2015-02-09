@@ -8,8 +8,20 @@
   },
   "description": "Generator for Angular Front End apps using gulp and following the google recommendations for project file structure",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "bower",
+    "angularjs",
+    "scaffold",
+    "front-end",
+    "component",
+    "module",
+    "modular",
+    "app",
+    "gulp",
+    "automation"
   ],
+  "homepage": "https://github.com/kosz/generator-modular",
+  "bugs": "https://github.com/kosz/generator-modular/issues",
   "dependencies": {
     "yeoman-generator": "^0.17.3",
     "yosay": "^1.0.1",

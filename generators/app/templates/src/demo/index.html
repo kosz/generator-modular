@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="<%= config.get('name') %>-demo">
+<head>
+  <title><%= config.get('name') %> Demo</title>
+  <base href="/">
+
+  <!-- bower:css -->
+  <!-- endinject -->
+
+  <!-- inject:css -->
+  <!-- endinject -->
+
+  <!-- bower:js -->
+  <!-- endinject -->
+</head>
+<body>
+  <div ng-include="'demo/header.html'"></div>
+  <ng-view></ng-view>
+  <div ng-include="'demo/footer.html'"></div>
+  <!-- inject:js -->
+  <!-- endinject -->
+</body>
+</html>

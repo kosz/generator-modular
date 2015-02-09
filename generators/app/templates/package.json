@@ -43,6 +43,7 @@
     "chalk": "~0.5.1",
     "protractor": "~1.4.0",
     "gulp-concat": "^2.4.3",
-    "uglify-save-license": "~0.4.1"
+    "uglify-save-license": "~0.4.1",
+    "gulp-ngdocs": "^0.2.10"
   }
 }

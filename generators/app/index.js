@@ -171,6 +171,7 @@ module.exports = generators.Base.extend({
     this.template('src/routes/main/footer.html', 'src/routes/main/footer.html');
 
     this.template('src/app/app.scss', 'src/app/app.scss');
+    this.template('src/app/vendor.scss', '.tmp/serve/app/vendor.css'); // TODO: vendor.css confusion
 
     //
     // example route /exampleRoute

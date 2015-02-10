@@ -21,7 +21,7 @@ gulp.task('ngdocs-build', function () {
     .pipe(gulp.dest('./ngDocs'));
 });
 
-gulp.task('ngdocs-serve', ['ngdocs-build'], function() {
+gulp.task('serve:ngdocs', ['ngdocs-build'], function() {
   browserSync({
     port: 4000,
     server: {

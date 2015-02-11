@@ -1,3 +1,23 @@
+/**
+ *
+ * Copyright 2015 Cosmin Bucur
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **/
+
+'use strict';
+
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -127,7 +147,7 @@ module.exports = generators.Base.extend({
 
   scaffoldModule: function () {
 
-    if ( this.projectType === "app" ) { return; }
+    if ( this.projectType === 'app' ) { return; }
 
     this.template('src/demo/demo.js', 'src/demo/demo.js');
     this.template('src/module/module.js', 'src/module/module.js');
@@ -150,7 +170,7 @@ module.exports = generators.Base.extend({
 
   scaffoldApp: function () {
 
-    if ( this.projectType === "module" ) { return; }
+    if ( this.projectType === 'module' ) { return; }
 
     this.template('src/app/app.js', 'src/app/app.js');
     this.template('src/index.html', 'src/index.html');

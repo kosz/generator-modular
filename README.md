@@ -68,4 +68,5 @@ many others...
 
 ## License
 
-[BSD license](http://opensource.org/licenses/bsd-license.php)
+[Apache license](http://www.apache.org/licenses/LICENSE-2.0)
+

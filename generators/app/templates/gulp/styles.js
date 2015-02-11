@@ -53,5 +53,5 @@ gulp.task('styles', function () {
   return gulp.src(src)
       .pipe($.sass())
       .pipe($.concat('css' + '.css'))
-      .pipe(gulp.dest(paths.tmp + '/serve/app/'));
+      .pipe(gulp.dest(paths.tmp + '/serve/<%= projectType %>/'));
 });

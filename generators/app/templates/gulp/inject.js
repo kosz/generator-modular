@@ -12,6 +12,7 @@ gulp.task('inject', ['inject-css'], function () {
 
   var injectStyles = gulp.src([
     paths.tmp + '/serve/**/*.css',
+    '!' + paths.tmp + '/serve/module/vendor.css',
     '!' + paths.tmp + '/serve/app/vendor.css'
   ], { read: false });
 
@@ -44,6 +45,6 @@ gulp.task('inject-css', ['styles'],  function () {
   var target = gulp.src('./.tmp/serve/index.html');
   var sources = gulp.src(['./tmp/**/*.css'], {read: false});
   target.pipe($.inject(sources, {ignorePath: 'src', addRootSlash: false }))
-  .pipe(gulp.dest('./tmp/serve'));
+  .pipe(gulp.dest('./.tmp/serve'));
 
 });

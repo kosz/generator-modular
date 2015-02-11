@@ -1,8 +1,8 @@
-exports.sanitizePath = function (path) { 
-  
-  if ( path[path.length-1] !== "/" ) { 
-    path = path + "/"; 
-  }  
+exports.sanitizePath = function (path) {
+
+  if ( path[path.length-1] !== "/" ) {
+    path = path + "/";
+  }
   return path;
 
 };
@@ -14,6 +14,6 @@ exports.wrapAngularMockInjections = function(injections) {
   return injections;
 };
 
-exports.unwrapAngularMockInjection = function(injection) { 
+exports.unwrapAngularMockInjection = function(injection) {
   //return injection.replace('_');
 }

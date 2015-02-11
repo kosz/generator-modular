@@ -27,8 +27,8 @@ module.exports = generators.Base.extend({
       ],
       filter: function (val) {
         var filterMap = {
-          "Angular Web App": 'Webapp',
-          "Module to be included in other Angular Web Apps": 'Module'
+          "Angular Web App": 'app',
+          "Module to be included in other Web Apps": 'module'
         }
         return filterMap[val];
       },
@@ -121,11 +121,13 @@ module.exports = generators.Base.extend({
     this.template('karma.conf.js', 'karma.conf.js');
     this.template('editorconfig', '.editorconfig');
 
+    this.template('src/app/vendor.scss', '.tmp/serve/' + this.projectType + '/vendor.css'); // TODO: vendor.css confusion
+
   },
 
   scaffoldModule: function () {
 
-    if ( this.projectType === "Webapp" ) { return; }
+    if ( this.projectType === "app" ) { return; }
 
     this.template('src/demo/demo.js', 'src/demo/demo.js');
     this.template('src/module/module.js', 'src/module/module.js');
@@ -148,7 +150,7 @@ module.exports = generators.Base.extend({
 
   scaffoldApp: function () {
 
-    if ( this.projectType === "Module" ) { return; }
+    if ( this.projectType === "module" ) { return; }
 
     this.template('src/app/app.js', 'src/app/app.js');
     this.template('src/index.html', 'src/index.html');
@@ -171,7 +173,6 @@ module.exports = generators.Base.extend({
     this.template('src/routes/main/footer.html', 'src/routes/main/footer.html');
 
     this.template('src/app/app.scss', 'src/app/app.scss');
-    this.template('src/app/vendor.scss', '.tmp/serve/app/vendor.css'); // TODO: vendor.css confusion
 
     //
     // example route /exampleRoute
@@ -193,15 +194,17 @@ module.exports = generators.Base.extend({
     this.installDependencies({
       callback: function () {
 //        this.spawnCommand('gulp', ['index','ngdocs']).on('close', function (code) { // TODO
-          console.log( chalk.bold.green('Finished setting up ' + name + ' run ' + chalk.yellow('gulp serve') + ' to get started\n'));
+          console.log( chalk.bold.green('\nFinished setting up ' + name + ' run ' + chalk.yellow('gulp serve') + ' to get started\n'));
           console.log(chalk.bold.yellow('docs :') + chalk.red(' https://github.com/kosz/generator-modular') + '\n' );
 
-          console.log(chalk.bold.yellow('gulp :'));
+          console.log(chalk.bold.yellow('gulp commands:\n'));
 
           console.log(chalk.yellow(' gulp serve') + chalk.green(' - opens up a live reload server, and runs the ') + chalk.cyan('watchers'));
+          console.log(chalk.yellow(' gulp serve:dist') + chalk.green(' - serves a production build, with minified/concatenated files') + chalk.cyan('watchers'));
           console.log(chalk.yellow(' gulp') + chalk.green(' - runs the ') + chalk.cyan('watchers') + chalk.green(' but does not open a server'));
-          console.log(chalk.yellow(' gulp test') + chalk.green(' - runs the jasmine spec suite') + chalk.gray(' alternate command: karma start karma.conf.js'));
-          console.log(chalk.yellow(' gulp ngdocs-serve') + chalk.green(' - compiles ngDocs from your comments, and opens up a server, serving the documentation page\n'));
+          console.log(chalk.yellow(' gulp test') + chalk.green(' - runs the jasmine test suite'));
+          console.log(chalk.yellow(' gulp test:auto') + chalk.green(' - runs a watcher that executes the test suite on every change'));
+          console.log(chalk.yellow(' gulp serve:ngdocs') + chalk.green(' - compiles ngDocs from your comments, and opens up a server, serving the documentation page\n'));
 
 //        });
       }.bind(this)

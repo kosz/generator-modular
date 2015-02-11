@@ -11,7 +11,7 @@ gulp.task('ngdocs-build', function () {
     //scripts: ['src/app.js'],
     html5Mode: true,
     startPage: '/api',
-    title: 'webapp',
+    title: '<%= config.get("name") %>',
     image: "http://swiip.github.io/yeoman-angular/slides/img/yeoman-009.png",
     imageLink: "/api",
     titleLink: "http://localhost:3000"

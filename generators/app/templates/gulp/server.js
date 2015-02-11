@@ -8,7 +8,8 @@ var util = require('util');
 
 var browserSync = require('browser-sync');
 
-var middleware = require('./proxy');
+var middleware = require('./proxy'); //TODO: residue from huge refactor
+middleware.push(require('connect-history-api-fallback'));
 
 function browserSyncInit(baseDir, files, browser) {
   browser = browser === undefined ? 'default' : browser;

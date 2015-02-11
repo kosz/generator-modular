@@ -2,4 +2,6 @@
 node_modules
 bower_components
 dist
-src/ng-docs
+ngDocs
+.DS_Store
+.tmp

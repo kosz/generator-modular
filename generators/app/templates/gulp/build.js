@@ -10,6 +10,8 @@ var $ = require('gulp-load-plugins')({
 
 gulp.task('partials', function () {
   return gulp.src([
+    '!' + paths.src + '/index.html',
+    '!' + paths.tmp + '/serve/index.html',
     paths.src + '/**/*.html',
     paths.tmp + '/**/*.html'
   ])

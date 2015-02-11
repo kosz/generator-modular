@@ -7,8 +7,8 @@ exports.promptPath = function () {
   this.prompt({
     type    : 'input',
     name    : 'path',
-    message : 'Enter the path for this controller\n  Default: ' + chalk.yellow('src/app/'),
-    default : 'src/app/',
+    message : 'Enter the path for this controller\n  Default: ' + chalk.yellow('src/<%= projectType %>/'),
+    default : 'src/<%= projectType %>/',
     store   : true
   }, function (answers) {
 

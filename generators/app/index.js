@@ -124,10 +124,9 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
+
   scaffoldProjectBase: function () {
-    //
-    // project setup
-    //
+
     this.template('gulpfile.js', 'gulpfile.js');
 
     this.directory('gulp', 'gulp');

@@ -5,3 +5,4 @@ dist
 ngDocs
 .DS_Store
 .tmp
+gulpfile.tmp*

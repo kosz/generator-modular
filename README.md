@@ -9,12 +9,23 @@
 
 Currently release 0.0.2, still needs work, more information available in the gitter channel :  [![Join the chat at https://gitter.im/kosz/generator-modular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-modular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Version 0.0.3 planned for the end of this week ( Feb 15 ). New releases on a weekly basis. This is a fork of, and meant to continue/replace:  [generator-angular-webapp](https://github.com/kosz/generator-angular-webapp).
+Version 0.0.3 planned for the end of this week ( Feb 22 ). New releases on a weekly basis. This is a fork of, and meant to continue/replace:  [generator-angular-webapp](https://github.com/kosz/generator-angular-webapp).
 
 ### Installation
 
 ```
 npm install -g generator-modular
+```
+
+### Installing the latest version from the git master branch
+
+Since the project is still young, it may be prefered at times to work with the latest version from git. In order to achieve this, we will: 
+- clone this repo locally
+- npm link from the root of the project, to install generator-modular from the source code
+
+All that can be achieved by running:
+```
+git clone git@github.com:kosz/generator-modular.git && cd generator-modular && npm link
 ```
 
 Make sure all prerequisites are installed and up to date : gulp, npm, yeoman, bower, git.

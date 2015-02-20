@@ -45,6 +45,7 @@
     "gulp-concat": "^2.4.3",
     "uglify-save-license": "~0.4.1",
     "connect-history-api-fallback": "0.0.5",
-    "gulp-ngdocs": "^0.2.10"
+    "gulp-ngdocs": "^0.2.10",
+    "gulp-file": "^0.2.0"
   }
 }

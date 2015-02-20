@@ -19,8 +19,8 @@ module.exports = generators.Base.extend({
       this.prompt({
         type    : 'input',
         name    : 'path',
-        message : 'Enter the path for this template\n  Default: ' + chalk.yellow('src/<%= projectType %>/'),
-        default : 'src/<%= projectType %>/',
+        message : 'Enter the path for this template\n  Default: ' + chalk.yellow('src/app/'),
+        default : 'src/app/',
         store   : true
       }, function (answers) {
         this.path = answers.path;

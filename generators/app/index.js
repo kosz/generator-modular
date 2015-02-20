@@ -140,8 +140,6 @@ module.exports = generators.Base.extend({
     this.template('karma.conf.js', 'karma.conf.js');
     this.template('editorconfig', '.editorconfig');
 
-    this.template('src/app/vendor.scss', '.tmp/serve/' + this.projectType + '/vendor.css'); // TODO: vendor.css confusion
-
   },
 
   scaffoldModule: function () {

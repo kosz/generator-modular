@@ -45,6 +45,7 @@ gulp.task('inject-css', ['styles'],  function () {
   var target = gulp.src('./.tmp/serve/index.html');
   var sources = gulp.src(['./tmp/**/*.css'], {read: false});
   target.pipe($.inject(sources, {ignorePath: 'src', addRootSlash: false }))
+  .pipe($.file('<%= projectType %>/vendor.css','/* */'))
   .pipe(gulp.dest('./.tmp/serve'));
 
 });

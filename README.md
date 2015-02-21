@@ -77,6 +77,8 @@ many others...
 - yeoman `npm install -g yo`
 - bower `npm install -g bower`
 
+### Useful links
+
 ## License
 
 [Apache license](http://www.apache.org/licenses/LICENSE-2.0)

@@ -3,6 +3,16 @@
 	function randomizeColor() {
 	  return alertClasses[Math.floor(Math.random() * (alertClasses.length))];
 	}
+  if (config.get('uxFramework') === 'material') {
+%><div layout="row" layout-sm="column" class="modular_content">
+  <md-whiteframe
+    class="md-whiteframe-z1" flex>
+    <p>Automatically Generated for: <%= name %>.</p>
+  </md-whiteframe>
+</div><%
+  } else {
  %><div class="container">
   <div class="alert <%= randomizeColor() %>" role="alert">Automatically Generated for: <%= name %>.</div>
-</div>
+</div>i<%
+  }
+%>

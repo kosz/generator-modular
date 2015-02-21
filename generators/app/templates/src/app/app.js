@@ -11,7 +11,15 @@
   http://localhost:8000
  */
 
-angular.module('<%= config.get("name") %>', [ 'ngRoute' ])
+angular.module('<%= config.get("name") %>', [ <%
+  if (config.get('uxFramework') === 'material') {
+%>'ngMaterial',<%
+  } else {
+
+  }
+%>
+'ngRoute'
+])
 .config([ '$routeProvider', '$locationProvider', function($routeProvider,$locationProvider) {
 
     $routeProvider

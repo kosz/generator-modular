@@ -110,6 +110,38 @@ module.exports = generators.Base.extend({
     }.bind(this));
   },
 
+  promptUxFramework: function () {
+    var done = this.async();
+
+    this.prompt({
+      type: 'list',
+      name: 'uxFramework',
+      message: 'Which UX Framework would you like to use ?',
+      choices: [
+        '1. Angular Material: Angular Material Design Implementation',
+        '2. Angular-Strap: Angular Bootstrap Wrapper (TODO)',
+        '3. Angular BootstrapUI: Angular Bootstrap Wrapper (TODO)',
+        '4. Bootstrap (standalone with no angular wrapper)',
+        '5. None',
+      ],
+      filter: function (val) {
+        var filterMap = {
+          '1. Angular Material: Angular Material Design Implementation': 'material',
+          '2. Angular-Strap: Angular Bootstrap Wrapper': 'strap',
+          '3. Angular BootstrapUI: Angular Bootstrap Wrapper': 'bootstrapui',
+          '4. Bootstrap (standalone with no angular wrapper)': 'bootstrap',
+          '5. None': 'none'
+        };
+        return filterMap[val];
+      },
+      store: true,
+    }, function (answers) {
+      this.uxFramework = answers.uxFramework; //TODO: refactor and remove this
+      this.config.set('uxFramework', answers.uxFramework);
+      done();
+    }.bind(this));
+  },
+
   promptAngularVersion: function () {
     var done = this.async();
     this.prompt({
@@ -117,7 +149,7 @@ module.exports = generators.Base.extend({
       name: 'angularVersion',
       message: 'Which angular version would you like to use ? (eg: 1.2.28)',
       store: true,
-      default: '1.3.8',
+      default: '1.3',
     }, function (answers) {
       this.log(answers.angularVersion);
       this.angularVersion = answers.angularVersion;
@@ -153,13 +185,18 @@ module.exports = generators.Base.extend({
     this.template('src/demo/demo.controller.js', 'src/demo/demo.controller.js');
 
     this.template('src/demo/main.html', 'src/demo/main.html');
-    this.template('src/demo/header.html', 'src/demo/header.html');
+
+    if ( this.config.get('uxFramework') === 'material' ) {
+      this.template('src/demo/header.material.html', 'src/demo/header.html');
+    } else {
+      this.template('src/demo/header.html', 'src/demo/header.html');
+    }
     this.template('src/demo/footer.html', 'src/demo/footer.html');
 
     this.composeWith('modular:route', {
       options: {
-        path: generatorWebappUtils.sanitizePath('src/routes/exampleRoute'),
-        name: 'exampleRoute'
+        path: generatorWebappUtils.sanitizePath('src/routes/example-route'),
+        name: 'example-route'
       }
     });
 
@@ -185,19 +222,25 @@ module.exports = generators.Base.extend({
       }
     });
 
-    this.template('src/routes/main/main.html', 'src/routes/main/main.html');
-    this.template('src/routes/main/header.html', 'src/routes/main/header.html');
+    if ( this.config.get('uxFramework') === 'material' ) {
+      this.template('src/routes/main/main.material.html', 'src/routes/main/main.html');
+      this.template('src/routes/main/header.material.html', 'src/routes/main/header.html');
+    } else {
+      this.template('src/routes/main/main.html', 'src/routes/main/main.html');
+      this.template('src/routes/main/header.html', 'src/routes/main/header.html');
+    }
+
     this.template('src/routes/main/footer.html', 'src/routes/main/footer.html');
 
     this.template('src/app/app.scss', 'src/app/app.scss');
 
     //
-    // example route /exampleRoute
+    // example route /example-route
     //
    this.composeWith('modular:route', {
       options: {
-          path: generatorWebappUtils.sanitizePath('src/routes/exampleRoute'),
-          name: 'exampleRoute'
+          path: generatorWebappUtils.sanitizePath('src/routes/example-route'),
+          name: 'example-route'
       }
     });
 
@@ -217,7 +260,7 @@ module.exports = generators.Base.extend({
           console.log(chalk.bold.yellow('gulp commands:\n'));
 
           console.log(chalk.yellow(' gulp serve') + chalk.green(' - opens up a live reload server, and runs the ') + chalk.cyan('watchers'));
-          console.log(chalk.yellow(' gulp serve:dist') + chalk.green(' - serves a production build, with minified/concatenated files') + chalk.cyan('watchers'));
+          console.log(chalk.yellow(' gulp serve:dist') + chalk.green(' - serves a production build, with minified/concatenated files'));
           console.log(chalk.yellow(' gulp') + chalk.green(' - runs the ') + chalk.cyan('watchers') + chalk.green(' but does not open a server'));
           console.log(chalk.yellow(' gulp test') + chalk.green(' - runs the jasmine test suite'));
           console.log(chalk.yellow(' gulp test:auto') + chalk.green(' - runs a watcher that executes the test suite on every change'));

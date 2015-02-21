@@ -1,5 +1,5 @@
 {
-  "name": "<%= config.get('name') %>",
+  "name": "<%= config.get("name") %>",
   "version": "0.0.0",
   "ignore": [
     "**/.*",
@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "angular": "~<%= angularVersion %>",
-    "bootstrap": "~3.3.1",
-    "angular-route": "~<%= angularVersion %>",
-    "angular-mocks": "~<%= angularVersion %>"
+    <%
+      console.log(uxFramework);
+    if (uxFramework === "material") { %>
+    "angular-material": "latest", <% } else if (uxFramework === "bootstrap") {  %>
+    "bootstrap": "~3.3.1", <% } %>
+    "angular-route": "~<%= angularVersion %>"
   }
 }

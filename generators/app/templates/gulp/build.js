@@ -65,19 +65,19 @@ gulp.task('html', ['clean', 'inject', 'partials'], function () {
     .pipe($.size({ title: paths.dist + '/', showFiles: true }));
 });
 
-gulp.task('images', function () {
+gulp.task('images', ['clean'], function () {
   return gulp.src(paths.src + '/assets/images/**/*')
     .pipe(gulp.dest(paths.dist + '/assets/images/'));
 });
 
-gulp.task('fonts', function () {
+gulp.task('fonts', ['clean'], function () {
   return gulp.src($.mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
     .pipe($.flatten())
     .pipe(gulp.dest(paths.dist + '/fonts/'));
 });
 
-gulp.task('misc', function () {
+gulp.task('misc', ['clean'], function () {
   return gulp.src(paths.src + '/**/*.ico')
     .pipe(gulp.dest(paths.dist + '/'));
 });

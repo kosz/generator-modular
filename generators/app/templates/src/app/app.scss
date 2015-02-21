@@ -1,3 +1,12 @@
 body {
   background-color: white;
+}<%
+if (config.get('uxFramework') === 'material') {
+%>.modular_content md-whiteframe {
+  margin: 10px 10px 10px 10px;
 }
+
+.modular_content md-whiteframe p, h1, h2, h3, h4 {
+  margin: 10px 10px 10px 10px;
+}<%
+}%>

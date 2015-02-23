@@ -25,7 +25,7 @@ angular.module('<%= config.get("name") %>', [ <%
     $routeProvider
       .when('/', {
         templateUrl: 'routes/main/main.html',
-        controller: 'mainCtrl'
+        controller: 'main'
       })
       .otherwise({
         redirectTo: '/'

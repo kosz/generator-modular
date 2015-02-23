@@ -7,9 +7,9 @@
 
 ### Under construction
 
-Currently release 0.0.2, still needs work, more information available in the gitter channel :  [![Join the chat at https://gitter.im/kosz/generator-modular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-modular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Currently release 0.0.3, still needs work, more information available in the gitter channel :  [![Join the chat at https://gitter.im/kosz/generator-modular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-modular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Version 0.0.3 planned for the end of this week ( Feb 22 ). New releases on a weekly basis. This is a fork of, and meant to continue/replace:  [generator-angular-webapp](https://github.com/kosz/generator-angular-webapp).
+New releases on a weekly basis. This is a fork of, and meant to continue/replace:  [generator-angular-webapp](https://github.com/kosz/generator-angular-webapp).
 
 ### Installation
 
@@ -77,9 +77,23 @@ many others...
 - yeoman `npm install -g yo`
 - bower `npm install -g bower`
 
+### Credits
+
+This generator is influenced by other great generators : 
+
+- [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) ( gulp scripts ) 
+- [generator-angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack) ( ongoing development automation and file naming patterns ) 
+- [generator-angular](https://github.com/yeoman/generator-angular) ( the grandfather )
+
+
 ### Useful links
+
+- [Github Issues](https://github.com/kosz/generator-modular/issues)
+- [Known Bugs](https://github.com/kosz/generator-modular/labels/bug)
+- [Milestones](https://github.com/kosz/generator-modular/milestones)
+- [Changelog](https://github.com/kosz/generator-modular/blob/master/CHANGELOG.md)
+- [Wiki](https://github.com/kosz/generator-modular/wiki)
 
 ## License
 
 [Apache license](http://www.apache.org/licenses/LICENSE-2.0)
-

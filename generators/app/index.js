@@ -184,14 +184,14 @@ module.exports = generators.Base.extend({
 
     this.template('src/demo/demo.controller.js', 'src/demo/demo.controller.js');
 
-    this.template('src/demo/main.html', 'src/demo/main.html');
 
     if ( this.config.get('uxFramework') === 'material' ) {
+      this.template('src/demo/main.material.html', 'src/demo/main.html');
       this.template('src/demo/header.material.html', 'src/demo/header.html');
     } else {
       this.template('src/demo/header.html', 'src/demo/header.html');
     }
-    this.template('src/demo/footer.html', 'src/demo/footer.html');
+    this.template('src/routes/main/footer.html', 'src/demo/footer.html');
 
     this.composeWith('modular:route', {
       options: {
@@ -261,7 +261,7 @@ module.exports = generators.Base.extend({
 
           console.log(chalk.yellow(' gulp serve') + chalk.green(' - opens up a live reload server, and runs the ') + chalk.cyan('watchers'));
           console.log(chalk.yellow(' gulp serve:dist') + chalk.green(' - serves a production build, with minified/concatenated files'));
-          console.log(chalk.yellow(' gulp') + chalk.green(' - runs the ') + chalk.cyan('watchers') + chalk.green(' but does not open a server'));
+          console.log(chalk.yellow(' gulp') + chalk.green(' - runs the ') + chalk.cyan('build') + chalk.green(' script'));
           console.log(chalk.yellow(' gulp test') + chalk.green(' - runs the jasmine test suite'));
           console.log(chalk.yellow(' gulp test:auto') + chalk.green(' - runs a watcher that executes the test suite on every change'));
           console.log(chalk.yellow(' gulp serve:ngdocs') + chalk.green(' - compiles ngDocs from your comments, and opens up a server, serving the documentation page\n'));

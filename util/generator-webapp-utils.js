@@ -13,7 +13,3 @@ exports.wrapAngularMockInjections = function(injections) {
   }
   return injections;
 };
-
-exports.unwrapAngularMockInjection = function(injection) {
-  //return injection.replace('_');
-}

@@ -1,8 +1,15 @@
+'use strict';
+
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
 var reusablePrompts = require('../../util/reusable-prompts.js');
+
+function sanitizeControllerName (name,strategy) {
+  if (strategy === '') { return name; }  
+  return name.replace(/(Ctrl|Controller|Ctl)/g, '');
+}
 
 module.exports = generators.Base.extend({
 
@@ -12,6 +19,7 @@ module.exports = generators.Base.extend({
 
     this.argument('controllerName', { type: String, required: false });
     if ( this.controllerName === undefined ) { this.controllerName = this.options.name; }
+    this.controllerName = sanitizeControllerName(this.controllerName);
     this.path = this.options.path;
 
     this.injections = this.options.injections;
@@ -41,7 +49,7 @@ module.exports = generators.Base.extend({
 
   promptControllerAs: function () {
 
-    if (this.scopeMethods.length > 0) {
+    if (this.scopeMethods.length > 0 && this.config.get('controllerAs') === 'ask') {
       var done = this.async();
 
       this.prompt({
@@ -49,13 +57,13 @@ module.exports = generators.Base.extend({
         name: 'controllerAs',
         message: 'Are you going to be using the controllerAs pattern ? ( use $scope if unsure )',
         choices: [
-        "Use $scope",
-        "Use this, and declare controller as in your html"
+        'Use $scope',
+        'Use this, and declare controller as in your html'
         ],
         filter: function (val) {
           var filterMap = {
-            "Use $scope": 'false',
-            "Use this, and declare controller as in your html": 'true'
+            'Use $scope': 'false',
+            'Use this, and declare controller as in your html': 'true'
           }
           return filterMap[val];
         },
@@ -65,7 +73,7 @@ module.exports = generators.Base.extend({
         done();
       }.bind(this));
     } else {
-      this.controllerAs = 'false'; //TODO: not thrilled with this
+      this.controllerAs = this.config.get('controllerAs') === 'controllerAs' ? 'controllerAs' : 'false';
     }
 
   },
@@ -76,7 +84,7 @@ module.exports = generators.Base.extend({
     this.template('controller.controller.spec.js', generatorWebappUtils.sanitizePath(this.path) + this.controllerName + '.controller.spec.js');
 
     if ( this.createTemplate === 'true' ) { // refactor to use boolean not strings
-      this.composeWith('modular:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace("ctrl","").replace("Ctrl","").replace("Controller","") }});
+      this.composeWith('modular:template', { options: { path: generatorWebappUtils.sanitizePath(this.path), name: this.controllerName.replace('ctrl','').replace('Ctrl','').replace('Controller','') }});
     }
 
   }

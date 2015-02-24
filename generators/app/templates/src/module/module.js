@@ -9,5 +9,12 @@
  *
  */
 
-angular.module('<%= config.get("name") %>', [ 'ngRoute' ]);
+angular.module('<%= config.get("name") %>', [ <%
+  if (config.get('uxFramework') === 'material') {
+%>'ngMaterial', <%
+  } else {
 
+  }
+%>
+'ngRoute'
+]);

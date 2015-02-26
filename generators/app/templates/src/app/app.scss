@@ -2,7 +2,14 @@ body {
   background-color: white;
 }<%
 if (config.get('uxFramework') === 'material') {
-%>.modular_content md-whiteframe {
+%>.modular_content md-whiteframe img {
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modular_content md-whiteframe {
   margin: 10px 10px 10px 10px;
 }
 

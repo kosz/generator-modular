@@ -10,5 +10,5 @@ gulp.task('watch', ['inject'], function () {
     paths.src + '/**/*.scss',
     paths.src + '/**/*.js',
     'bower.json'
-  ], ['inject']);
+  ], ['inject','partials','test']);
 });

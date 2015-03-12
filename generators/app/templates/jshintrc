@@ -28,6 +28,6 @@
     "it": false,
     "inject": false,
     "expect": false,
-    "spyOn"
+    "spyOn": false
   }
 }

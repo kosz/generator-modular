@@ -13,8 +13,10 @@ gulp.task('partials', function () {
     '!' + paths.src + '/index.html',
     '!' + paths.tmp + '/serve/index.html',
     paths.src + '/**/*.html',
+    paths.src + '/**/*.jade',
     paths.tmp + '/**/*.html'
   ])
+    .pipe($.if('/**/*.jade', $.jade()))
     .pipe($.minifyHtml({
       empty: true,
       spare: true,

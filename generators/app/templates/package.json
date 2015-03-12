@@ -31,6 +31,8 @@
     "gulp-protractor": "~0.0.11",
     "gulp-karma": "~0.0.4",
     "gulp-sass": "~1.1.0",
+    "gulp-if": "^1.2.5",
+    "gulp-jade": "^1.0.0",
     "gulp-angular-filesort": "~1.0.4",
     "main-bower-files": "~2.4.0",
     "jshint-stylish": "~1.0.0",
@@ -46,6 +48,7 @@
     "uglify-save-license": "~0.4.1",
     "connect-history-api-fallback": "0.0.5",
     "gulp-ngdocs": "^0.2.10",
+    "gulp-typescript": "~2.3.0",
     "gulp-file": "^0.2.0"
   }
 }

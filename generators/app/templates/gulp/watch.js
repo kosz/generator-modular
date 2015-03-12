@@ -7,8 +7,10 @@ var paths = gulp.paths;
 gulp.task('watch', ['inject'], function () {
   gulp.watch([
     paths.src + '/**/*.html',
+    paths.src + '/**/*.jade',
     paths.src + '/**/*.scss',
     paths.src + '/**/*.js',
+    paths.src + '/**/*.ts',
     'bower.json'
-  ], ['inject','partials','test']);
+  ], ['inject', 'partials', 'test']);
 });

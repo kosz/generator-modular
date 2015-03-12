@@ -35,12 +35,15 @@ function browserSyncInit(baseDir, files, browser) {
 gulp.task('serve', ['watch'], function () {
   browserSyncInit([
     paths.tmp + '/serve',
+    paths.tmp + '/partials',
     paths.src
   ], [
     paths.tmp + '/serve/**/*.css',
+    paths.tmp + '/partials/**/*.js',
     paths.src + '/**/*.js',
     paths.src + 'src/assets/images/**/*',
     paths.tmp + '/serve/*.html',
+    paths.tmp + '/serve/**/*.js',
     paths.tmp + '/serve/**/*.html',
     paths.src + '/**/*.html'
   ]);

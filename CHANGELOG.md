@@ -1,5 +1,11 @@
 ## Changelog 
 
+#### 0.0.4
+
+- native jade support ( just add jade files instead of html )
+- native typescript support ( just add .ts files ) 
+- various bug fixes 
+
 #### 0.0.3 
 
 - angular material option

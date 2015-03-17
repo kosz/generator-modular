@@ -1,3 +1,5 @@
+'use strict';
+
 var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
@@ -9,8 +11,17 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
 
     this.argument('name', { type: String, required: false });
-    if ( this.name === undefined ) { this.name = this.options.name; }
+    if ( this.name === undefined ) {
+      if (!this.options.name) {
+        throw new Error(chalk.red('Must specify a template name : yo modular:template my-template'));
+      }
+      this.name = this.options.name;
+    }
     this.path = this.options.path;
+
+    this.type = 'controller';
+    this.defaultPath = 'src/services/' + this.serviceName;
+    this.rtfm = 'https://github.com/kosz/generator-modular/wiki/yo-modular:template';
 
   },
   promptPath: function () {

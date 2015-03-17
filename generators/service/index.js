@@ -10,7 +10,14 @@ module.exports = generators.Base.extend({
 
     generators.Base.apply(this, arguments);
 
-    this.argument('serviceName', { type: String, required: true });
+    this.argument('serviceName', { type: String, required: false });
+    if (!this.serviceName) {
+      throw new Error(chalk.red('Must specify a service name : yo modular:service myService'));
+    }
+
+    this.type = 'controller';
+    this.defaultPath = 'src/services/' + this.serviceName;
+    this.rtfm = 'https://github.com/kosz/generator-modular/wiki/yo-modular:service';
 
   },
 
@@ -22,14 +29,14 @@ module.exports = generators.Base.extend({
 
   promptPath: reusablePrompts.promptPath,
 
-  promptInjections: reusablePrompts.promptInjections, 
+  promptInjections: reusablePrompts.promptInjections,
 
   promptScopeMethods: reusablePrompts.promptScopeMethods,
 
-  promptServiceType: function () { 
+  promptServiceType: function () {
 
-    var done = this.async(); 
-    
+    var done = this.async();
+
     this.prompt({
       type: 'list',
       name: 'serviceType',
@@ -40,11 +47,11 @@ module.exports = generators.Base.extend({
       ],
       filter: function (val) {
         var filterMap = {
-          "service (not supported yet)": 'service', 
+          "service (not supported yet)": 'service',
           "factory": 'factory'
         }
         return filterMap[val];
-      },  
+      },
       store: true,
     }, function (answers) {
       this.serviceType = answers.serviceType;

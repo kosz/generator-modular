@@ -1,14 +1,19 @@
-var generators = require('yeoman-generator');
+'use strict';
 var chalk = require('chalk');
 
+// TODO
+// The coupling in this method has made it obvious that
+// this needs a refactor in the near future
 exports.promptPath = function () {
 
   var done = this.async();
+
   this.prompt({
     type    : 'input',
     name    : 'path',
-    message : 'Enter the path for this controller\n  Default: ' + chalk.yellow('src/<%= projectType %>/'),
-    default : 'src/<%= projectType %>/',
+    message : 'Enter the file path that this ' + this.type + ' should be created in .  \n' +
+              '  More info: ' + chalk.green(this.rtfm) + '\n  Default:',
+    default : this.defaultPath,
     store   : true
   }, function (answers) {
 

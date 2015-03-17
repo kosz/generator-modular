@@ -7,7 +7,7 @@ var generatorWebappUtils = require('../../util/generator-webapp-utils.js');
 var reusablePrompts = require('../../util/reusable-prompts.js');
 
 function sanitizeControllerName (name,strategy) {
-  if (strategy === '') { return name; }  
+  if (strategy === '') { return name; }
   return name.replace(/(Ctrl|Controller|Ctl)/g, '');
 }
 
@@ -18,15 +18,26 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
 
     this.argument('controllerName', { type: String, required: false });
-    if ( this.controllerName === undefined ) { this.controllerName = this.options.name; }
+    if ( !this.controllerName ) {
+      if ( !this.options.name ) {
+        throw new Error(chalk.red('Must specify a controller name : yo modular:controller myController'));
+      }
+      this.controllerName = this.options.name;
+    }
+
     this.controllerName = sanitizeControllerName(this.controllerName);
     this.path = this.options.path;
+
+    this.type = 'controller';
+    this.defaultPath = 'src/directives/' + this.controllerName;
+    this.rtfm = 'https://github.com/kosz/generator-modular/wiki/yo-modular:controller';
 
     this.injections = this.options.injections;
     this.scopeMethods = this.options.scopeMethods;
     this.createTemplate = this.options.createTemplate;
 
     this.generatorWebappUtils = generatorWebappUtils;
+
 
   },
 

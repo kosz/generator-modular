@@ -12,8 +12,16 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
 
     this.argument('routeName', { type: String, required: false });
-    if ( this.routeName === undefined ) { this.routeName = this.options.name; }
+    if ( this.routeName === undefined ) {
+      if (!this.options.name) {
+        throw new Error(chalk.red('Must specify a route name : yo modular:route my-route'));
+      }
+      this.routeName = this.options.name;
+    }
     this.path = this.options.path;
+    this.type = 'route';
+    this.defaultPath = 'src/routes/' + this.routeName;
+    this.rtfm = 'https://github.com/kosz/generator-modular/wiki/yo-modular:route';
 
     this.generatorWebappUtils = generatorWebappUtils;
 

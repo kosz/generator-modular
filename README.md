@@ -7,7 +7,7 @@
 
 ### Under construction
 
-Currently release 0.0.3, still needs work, more information available in the gitter channel :  [![Join the chat at https://gitter.im/kosz/generator-modular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-modular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Currently release 0.0.4, still needs work, more information available in the gitter channel :  [![Join the chat at https://gitter.im/kosz/generator-modular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosz/generator-modular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 New releases on a weekly basis. This is a fork of, and meant to continue/replace:  [generator-angular-webapp](https://github.com/kosz/generator-angular-webapp).
 
